@@ -3,9 +3,9 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import CoachDetail from './pages/coaches/CoachDetail.vue';
 import CoachesList from './pages/coaches/CoachesList.vue';
 import CoachesRegistration from './pages/coaches/CoachesRegistration.vue';
-import ContactCoach from './pages/request/ContactCoach.vue';
-import RequestsReceived from './pages/request/RequestsReceived.vue';
-import NotFound from './pages/NotFount.vue';
+import ContactCoach from './pages/requests/ContactCoach.vue';
+import RequestsReceived from './pages/requests/RequestsReceived.vue';
+import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -21,7 +21,7 @@ const router = createRouter({
     },
     { path: '/register', component: CoachesRegistration },
     { path: '/requests', component: RequestsReceived },
-    { path: '/:notFount(.*)', component: NotFound }, //route that answers any incorrect urls to show error message
+    { path: '/:notFound(.*)', component: NotFound }, //route that answers any incorrect urls to show error message
   ],
 });
 
