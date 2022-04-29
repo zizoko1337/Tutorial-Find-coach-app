@@ -5,7 +5,6 @@
         <base-button mode="outline">Refresh</base-button>
         <base-button link to="/register">Register as Coach</base-button>
       </div>
-      
         <ul v-if="hasCoaches">
           <coach-item
             v-for="coach in filteredCoaches"
