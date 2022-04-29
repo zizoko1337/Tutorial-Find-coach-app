@@ -15,6 +15,7 @@ const router = createRouter({
     {
       path: '/coaches/:id',
       component: CoachDetail,
+      props: true, // that way, id is passed to component as a prop. With data stored by vuex, id is enough for component to know witch resources to ask for.
       children: [
         { path: 'contact', component: ContactCoach }, //nested rout that allows contact from specific coach page. e.g. /coaches/c1/contact
       ],
