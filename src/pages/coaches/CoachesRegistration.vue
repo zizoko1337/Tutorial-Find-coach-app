@@ -1,3 +1,0 @@
-<template>
-    test register
-</template>

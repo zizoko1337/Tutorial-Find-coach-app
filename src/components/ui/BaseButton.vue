@@ -1,6 +1,6 @@
 <template>
 <!-- This component is for button style and behaviour, it can be used for regular actions or links.
-Props are used to modify style (mode), link (link), and path (to).
+Props are used to modify style (mode), if button is link (link), and path (to).
 This component is defined in main.js file so it can be accessed in whole app -->
   <button v-if="!link" :class="mode">
     <slot></slot>
