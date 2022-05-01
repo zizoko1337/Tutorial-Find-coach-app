@@ -1,5 +1,5 @@
 <template>
-<!-- submit.prevent because we don't want to reload page after submitting  -->
+  <!-- submit.prevent because we don't want to reload page after submitting  -->
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="firstname">Firstname</label>
@@ -40,6 +40,7 @@
 
 <script>
 export default {
+  emits: ['save-data'], // emit to coach Registration
   data() {
     return {
       firstName: '',
@@ -50,18 +51,19 @@ export default {
     };
   },
   methods: {
-    submitForm() { //method that we want to use with submitting form
+    submitForm() {
+      //method that we want to use with submitting form
       const formData = {
         first: this.firstName,
         last: this.lastName,
         desc: this.description,
         rate: this.rate,
-        areas: this.areas
+        areas: this.areas,
       };
 
-      console.log(formData);
-    }
-  }
+      this.$emit('save-data', formData); 
+    },
+  },
 };
 </script>
 
@@ -76,7 +78,7 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input[type="checkbox"] + label {
+input[type='checkbox'] + label {
   font-weight: normal;
   display: inline;
   margin: 0 0 0 0.5rem;
@@ -97,13 +99,13 @@ textarea:focus {
   border-color: #3d008d;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   display: inline;
   width: auto;
   border: none;
 }
 
-input[type="checkbox"]:focus {
+input[type='checkbox']:focus {
   outline: #3d008d solid 1px;
 }
 
