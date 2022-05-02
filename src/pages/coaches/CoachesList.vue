@@ -17,7 +17,7 @@
           :id="coach.id"
           :first-name="coach.firstName"
           :last-name="coach.lastName"
-          :rate="coach.rate"
+          :rate="coach.hourlyRate"
           :areas="coach.areas"
         ></coach-item>
       </ul>
