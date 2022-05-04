@@ -39,7 +39,7 @@ export default {
       this.$store.dispatch('requests/contactCoach', { //dispatch = use action 
         email: this.email,
         message: this.message,
-        coachId: this.$route.id //getting coach id from url
+        coachId: this.$route.params.id //getting coach id from url
       });
       this.$router.replace('/coaches');
 

@@ -1,8 +1,9 @@
 export default {
-    requests(state) {
-      return state.requests;
+    requests(state, _, _2, rootGetters) { //(state, getters, rootState, rootGetters) 
+      const coachId = rootGetters.userId; 
+      return state.requests.filter(req => req.coachId === coachId);//getting requests by user id
     },
-    hasRequests(state) {
-      return state.requests && state.requests.length > 0;
-    }
-  };
+    hasRequests(_, getters) { //(state, getters)
+        return getters.requests && getters.requests.length > 0; // wee need to get length but of filtered requests 
+      }
+    };
