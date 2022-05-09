@@ -1,4 +1,8 @@
 <template>
+<!-- double ! allows error to be interpreted as boolean  -->
+  <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
@@ -89,7 +93,7 @@ export default {
       try {
         await this.$store.dispatch('coaches/loadCoaches');
       } catch (error) {
-        this.error = error.message || 'Something went wrong!';
+        this.error = error.message || 'Something went wrong!'; //this way error can be displayed to user
       }
       this.isLoading = false;
     },
