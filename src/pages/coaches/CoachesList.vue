@@ -6,11 +6,12 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-        <base-button v-if="!isCoach" link to="/register"
-          >Register as Coach</base-button
-        >
+        <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
       </div>
-      <ul v-if="hasCoaches">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
           :key="coach.id"
@@ -36,6 +37,8 @@ export default {
   data() {
     //data for filtering coaches
     return {
+      isLoading: false, //for spinner and errors
+      error: null,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -69,7 +72,7 @@ export default {
       });
     },
     hasCoaches() {
-      return this.$store.getters['coaches/hasCoaches'];
+      return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
     },
   },
   created() {
@@ -80,10 +83,19 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    loadCoaches() {
-      //loads coaches from vuex
-      this.$store.dispatch('coaches/loadCoaches');
+      async loadCoaches() { //async because dispatch returns promise
+      //loads coaches from firebase
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('coaches/loadCoaches');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!';
+      }
+      this.isLoading = false;
     },
+    handleError() {
+      this.error = null;
+    }
   },
 };
 </script>
