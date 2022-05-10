@@ -1,4 +1,4 @@
-# Tutorial: Find a coach app
+# Tutorial: Find a coach app (COPLETED)
 
 This is a main project from Vue.js course im doing.
 
